@@ -36,5 +36,11 @@ describe("v2/ functionality", () => {
 		expect(response.body.data.movie).toBeTruthy();
 	})
 
+	it("v2/headercheck GET receives an auth header correctly", async () => {
+		const response = await request(app).get("/v2/headercheck").auth("sam was here", {type: "bearer"});
+
+        expect(response.body.data).toBe("Bearer sam was here");
+	});
+
 });
 
